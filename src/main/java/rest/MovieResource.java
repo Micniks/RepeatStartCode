@@ -55,12 +55,20 @@ public class MovieResource {
         return GSON.toJson(list);
     }
     
-    @Path("/title/{name}")
+    @Path("/name/{name}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String getMovie(@PathParam("name") String name) {
         List<MovieDTO> movies = FACADE.getMovieName(name);
         return GSON.toJson(movies);
+    }
+    
+    @Path("/id/{id}")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getMovie(@PathParam("id") Long id) {
+        Movie movie = FACADE.getMovieID(id);
+        return GSON.toJson(movie);
     }
  
 }

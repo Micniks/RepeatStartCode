@@ -76,6 +76,18 @@ public class MovieFacade {
         }
     }
     
+    public Movie getMovieID(Long id){
+        EntityManager em = emf.createEntityManager();
+        try{
+            TypedQuery<Movie> tq = em.createQuery("SELECT m FROM Movie m WHERE m.id = :id", Movie.class);
+            tq.setParameter("id", id);
+            Movie result = tq.getSingleResult();
+            return result;
+        }finally{  
+            em.close();
+        }
+    }
+    
     public Movie addMovie(Movie movie){
         EntityManager em = emf.createEntityManager();
         try{

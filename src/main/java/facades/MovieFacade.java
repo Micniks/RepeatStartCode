@@ -53,7 +53,7 @@ public class MovieFacade {
     public List<Movie> getAllMovies(){
         EntityManager em = emf.createEntityManager();
         try{
-            TypedQuery<Movie> tq = em.createQuery("SELECT m FROM Movie m", Movie.class);
+            TypedQuery<Movie> tq = em.createQuery("SELECT m FROM Movie m order by m.name desc", Movie.class);
             return tq.getResultList();
         }finally{  
             em.close();
